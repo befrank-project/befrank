@@ -141,19 +141,7 @@ namespace CryptoNote {
 		uint64_t fee, uint64_t& reward, int64_t& emissionChange) const {
 		// assert(alreadyGeneratedCoins <= m_moneySupply);
 		assert(m_emissionSpeedFactor > 0 && m_emissionSpeedFactor <= 8 * sizeof(uint64_t));
-
-		if (alreadyGeneratedCoins == 0) {
-			reward = CryptoNote::parameters::RESERVE_FUND;
-			return true;
-		}
-		
-		// Tail emission
-
-		uint64_t baseReward = (m_moneySupply - alreadyGeneratedCoins) >> m_emissionSpeedFactor;
-		if (alreadyGeneratedCoins + CryptoNote::parameters::TAIL_EMISSION_REWARD >= m_moneySupply || baseReward < CryptoNote::parameters::TAIL_EMISSION_REWARD)
-		{
-			baseReward = CryptoNote::parameters::TAIL_EMISSION_REWARD;
-		}
+	    uint64_t baseReward = (m_moneySupply - alreadyGeneratedCoins) >> m_emissionSpeedFactor;
 
 		size_t blockGrantedFullRewardZone = blockGrantedFullRewardZoneByBlockVersion(blockMajorVersion);
 		medianSize = std::max(medianSize, blockGrantedFullRewardZone);
@@ -205,6 +193,10 @@ namespace CryptoNote {
 		if (!getBlockReward(blockMajorVersion, medianSize, currentBlockSize, alreadyGeneratedCoins, fee, blockReward, emissionChange)) {
 			logger(INFO) << "Block is too big";
 			return false;
+		}
+
+		if (height == 1) {
+			blockReward = CryptoNote::parameters::RESERVE_FUND;
 		}
 
 		std::vector<uint64_t> outAmounts;
@@ -457,8 +449,8 @@ namespace CryptoNote {
 			uint64_t nextDiffZ = low / timeSpan;
 
 			// minimum limit
-			if (nextDiffZ <= 100000) {
-				nextDiffZ = 100000;
+			if (nextDiffZ <= 100) {
+				nextDiffZ = 100;
 			}
 
 			return nextDiffZ;
