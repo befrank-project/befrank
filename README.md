@@ -1,4 +1,4 @@
-The BeFrank (Karbovanets) is cryptocurrency of Ukrainian origin, just like Bitcoin but more anonymous and privacy centric with opaque and more analysis resistant blockchain. It is people's electronic cash, not connected to government or officials.
+The BeFrank is Belgian cryptocurrency, just like Bitcoin but more anonymous and privacy centric with an opaque and more analysis resistant blockchain. It is the democratised money, by the people and for the people of Belgium and anyone who feels part of our community.
 
 ## Building BeFrank 
 
@@ -23,7 +23,7 @@ To build, change to a directory where this file is located, and run `make`. The 
 * Building with Clang: it may be possible to use Clang instead of GCC, but this may not work everywhere. To build, run `export CC=clang CXX=clang++` before running `make`.
 
 ### On Windows
-Dependencies: MSVC 2013 or later, CMake 2.8.6 or later, and Boost 1.55. You may download them from:
+Dependencies: MSVC 2013 or later, CMake 2.8.6 or later, and Boost 1.58. You may download them from:
 
 * http://www.microsoft.com/
 * http://www.cmake.org/
