@@ -34,7 +34,6 @@ const size_t   BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW             = 60;
 // MONEY_SUPPLY - total number coins to be generated
 const uint64_t MONEY_SUPPLY                                  = UINT64_C(10000000000000);
 const uint64_t RESERVE_FUND                                  = UINT64_C(2000000000000);
-const uint64_t TAIL_EMISSION_REWARD                          = UINT64_C(100000000000);
 const size_t CRYPTONOTE_COIN_VERSION                         = 1;
 const unsigned EMISSION_SPEED_FACTOR                         = 18;
 static_assert(EMISSION_SPEED_FACTOR <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
@@ -135,7 +134,11 @@ struct CheckpointData {
 };
 
 const std::initializer_list<CheckpointData> CHECKPOINTS = { 
-
+	{	1, "2a9c2d3e4e8f00ed29b8c8ee2c34212bc932547d079ce39924a31ed22726b91c" },
+	{	100, "15bd06a8670c71dbbadfa701794b9a24f49f4c42f533597e98893c3f781603b3" },
+	{	500, "19fdafd1116eb327999db012c7cd1cdbca5385105a3aaeef24467f9dee2c7502" },
+	{	1000, "9930bf2d319a2aff24bb80e9db88f5fd6357e1c0448f34fa7aec20db97e75d13" }.
+	{   1088, "7f274f2071f99dada4582c78f6cb59ecef55ea9566b57ae5972b0fe10e63242a" }
 };
 
 } // CryptoNote

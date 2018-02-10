@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.6)
 if (WIN32)
  option(CMAKE_USE_WIN32_THREADS_INIT "using WIN32 threads" ON)
 endif()
-set(VERSION "0.1")
+set(VERSION "1.0.1")
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
@@ -91,7 +91,7 @@ set(CMAKE_SUPPRESS_REGENERATION ON)
 # copy CTestCustom.cmake to build dir to disable long running tests in 'make test'
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CTestCustom.cmake ${CMAKE_CURRENT_BINARY_DIR})
 
-project(befrank)
+project(befrank-daemon)
 
 include_directories(include src external "${CMAKE_CURRENT_BINARY_DIR}/version")  
 
@@ -126,15 +126,6 @@ if(CMAKE_SYSTEM_NAME MATCHES "kOpenBSD.*|OpenBSD.*")
   set(OPENBSD TRUE)
 endif()
 
-# TODO: check bsdi, NetBSD, to see if they need the same FreeBSD changes
-#
-# elseif(CMAKE_SYSTEM_NAME MATCHES "kNetBSD.*|NetBSD.*")
-#   set(NETBSD TRUE)
-# elseif(CMAKE_SYSTEM_NAME MATCHES ".*BSDI.*")
-#   set(BSDI TRUE)
-
-#include_directories(include src contrib/epee/include external "${CMAKE_BINARY_DIR}/version")
-
 if(APPLE)
   include_directories(SYSTEM /usr/include/malloc)
   if(POLICY CMP0042)
@@ -150,16 +141,16 @@ else()
 endif()
 
 if(MSVC)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/Windows)
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/Windows)
 elseif(APPLE)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/OSX)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/Posix)
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/OSX)
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/Posix)
 elseif(ANDROID)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/Android)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/Posix)
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/Android)
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/Posix)
 else()
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/Linux)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/Posix)
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/Linux)
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/Posix)
 endif()
 
 option(STATIC "Link libraries statically" ${DEFAULT_STATIC})
@@ -484,7 +475,7 @@ if(STATIC)
   set(Boost_USE_STATIC_LIBS ON)
   set(Boost_USE_STATIC_RUNTIME ON)
 endif()
-find_package(Boost 1.57 QUIET REQUIRED COMPONENTS system filesystem thread date_time chrono regex serialization program_options coroutine context atomic)
+find_package(Boost 1.58 QUIET REQUIRED COMPONENTS system filesystem thread date_time chrono regex serialization program_options coroutine context atomic)
 
 set(CMAKE_FIND_LIBRARY_SUFFIXES ${OLD_LIB_SUFFIXES})
 if(NOT Boost_FOUND)
