@@ -125,7 +125,8 @@ const char* const SEED_NODES[] = {
   "seed2.befrank.site:18320",
   "seed3.befrank.site:18320",
   "seed4.befrank.site:18320",
-  "seed5.befrank.site:18320"
+  "seed5.befrank.site:18320",
+   "seed6.befrank.site:18320"
 };
 
 struct CheckpointData {
@@ -134,11 +135,11 @@ struct CheckpointData {
 };
 
 const std::initializer_list<CheckpointData> CHECKPOINTS = { 
-	{	1, "2a9c2d3e4e8f00ed29b8c8ee2c34212bc932547d079ce39924a31ed22726b91c" },
-	{	100, "15bd06a8670c71dbbadfa701794b9a24f49f4c42f533597e98893c3f781603b3" },
-	{	500, "19fdafd1116eb327999db012c7cd1cdbca5385105a3aaeef24467f9dee2c7502" },
+	{	   1, "2a9c2d3e4e8f00ed29b8c8ee2c34212bc932547d079ce39924a31ed22726b91c" },
+	{	 100, "15bd06a8670c71dbbadfa701794b9a24f49f4c42f533597e98893c3f781603b3" },
+	{	 500, "19fdafd1116eb327999db012c7cd1cdbca5385105a3aaeef24467f9dee2c7502" },
 	{	1000, "9930bf2d319a2aff24bb80e9db88f5fd6357e1c0448f34fa7aec20db97e75d13" },
-	{   1088, "7f274f2071f99dada4582c78f6cb59ecef55ea9566b57ae5972b0fe10e63242a" }
+	{       2000, "a6c56b7e1e4fbc4131bf182c6712ebf3caea29386d1306bb1750c6b3a61f282e" }
 };
 
 } // CryptoNote
