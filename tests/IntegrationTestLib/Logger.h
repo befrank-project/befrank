@@ -49,24 +49,24 @@
 class CLogger
 {
 public:
-	enum LOG_LEVEL
-	{
-		VERBOSE,
-		DEBUG,
-		TRACE,
-		WARNING,
-		_ERROR
-	};
-	static CLogger& Instance();
+    enum LOG_LEVEL
+    {
+        VERBOSE,
+        DEBUG,
+        TRACE,
+        WARNING,
+        _ERROR
+    };
+    static CLogger& Instance();
   void init(LOG_LEVEL log_lvl);
-	void Log(const std::string & log_info, LOG_LEVEL log_lvl, int indent_inc=0);
+    void Log(const std::string & log_info, LOG_LEVEL log_lvl, int indent_inc=0);
 
 private: 
-	int indent;
-	std::map<LOG_LEVEL, std::string> level_names;
-	LOG_LEVEL log_level;
-	std::mutex mutex;
-	CLogger(){};
-	CLogger(const CLogger& root);
-	CLogger& operator=(const CLogger&);
+    int indent;
+    std::map<LOG_LEVEL, std::string> level_names;
+    LOG_LEVEL log_level;
+    std::mutex mutex;
+    CLogger(){};
+    CLogger(const CLogger& root);
+    CLogger& operator=(const CLogger&);
 };
