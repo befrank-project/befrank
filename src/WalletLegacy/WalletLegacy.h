@@ -76,7 +76,7 @@ public:
   virtual void reset() override;
 
   virtual Crypto::SecretKey generateKey(const std::string& password, const Crypto::SecretKey& recovery_param = Crypto::SecretKey(), 
-	  bool recover = false, bool two_random = false) override;
+      bool recover = false, bool two_random = false) override;
 
   virtual void save(std::ostream& destination, bool saveDetailed = true, bool saveCache = true) override;
 
