@@ -22,8 +22,8 @@ macro(fix_default_compiler_settings_)
     # This replacement code is taken from sample in the CMake Wiki at
     # http://www.cmake.org/Wiki/CMake_FAQ#Dynamic_Replace.
     foreach (flag_var
-             CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
-             CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
+        CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
+        CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
       if (NOT BUILD_SHARED_LIBS AND NOT gtest_force_shared_crt)
         # When Google Test is built as a shared library, it should also use
         # shared runtime libraries.  Otherwise, it may end up with multiple
@@ -33,13 +33,13 @@ macro(fix_default_compiler_settings_)
         # on CRT DLLs being available. CMake always defaults to using shared
         # CRT libraries, so we override that default here.
         string(REPLACE "/MD" "-MT" ${flag_var} "${${flag_var}}")
-      endif()
+      endif ()
 
       # We prefer more strict warning checking for building Google Test.
       # Replaces /W3 with /W4 in defaults.
       string(REPLACE "/W3" "-W4" ${flag_var} "${${flag_var}}")
-    endforeach()
-  endif()
+    endforeach ()
+  endif ()
 endmacro()
 
 # Defines the compiler/linker flags used to build Google Test and
@@ -49,7 +49,7 @@ macro(config_compiler_and_linker)
   if (NOT gtest_disable_pthreads)
     # Defines CMAKE_USE_PTHREADS_INIT and CMAKE_THREAD_LIBS_INIT.
     find_package(Threads)
-  endif()
+  endif ()
 
   fix_default_compiler_settings_()
   if (MSVC)
@@ -65,7 +65,7 @@ macro(config_compiler_and_linker)
       # Compatibility warnings not applicable to Google Test.
       # Resolved overload was found by argument-dependent lookup.
       set(cxx_base_flags "${cxx_base_flags} -wd4675")
-    endif()
+    endif ()
     set(cxx_base_flags "${cxx_base_flags} -D_UNICODE -DUNICODE -DWIN32 -D_WIN32")
     set(cxx_base_flags "${cxx_base_flags} -DSTRICT -DWIN32_LEAN_AND_MEAN")
     set(cxx_exception_flags "-EHsc -D_HAS_EXCEPTIONS=1")
@@ -80,7 +80,7 @@ macro(config_compiler_and_linker)
     # explicitly.
     set(cxx_no_rtti_flags "-fno-rtti -DGTEST_HAS_RTTI=0")
     set(cxx_strict_flags
-      "-Wextra -Wno-unused-parameter -Wno-missing-field-initializers")
+        "-Wextra -Wno-unused-parameter -Wno-missing-field-initializers")
   elseif (CMAKE_CXX_COMPILER_ID STREQUAL "SunPro")
     set(cxx_exception_flags "-features=except")
     # Sun Pro doesn't provide macros to indicate whether exceptions and
@@ -102,18 +102,18 @@ macro(config_compiler_and_linker)
     set(cxx_no_exception_flags "+noeh -DGTEST_HAS_EXCEPTIONS=0")
     # RTTI can not be disabled in HP aCC compiler.
     set(cxx_no_rtti_flags "")
-  endif()
+  endif ()
 
   if (CMAKE_USE_PTHREADS_INIT)  # The pthreads library is available and allowed.
     set(cxx_base_flags "${cxx_base_flags} -DGTEST_HAS_PTHREAD=1")
-  else()
+  else ()
     set(cxx_base_flags "${cxx_base_flags} -DGTEST_HAS_PTHREAD=0")
-  endif()
+  endif ()
 
   # For building gtest's own tests and samples.
   set(cxx_exception "${CMAKE_CXX_FLAGS} ${cxx_base_flags} ${cxx_exception_flags}")
   set(cxx_no_exception
-    "${CMAKE_CXX_FLAGS} ${cxx_base_flags} ${cxx_no_exception_flags}")
+      "${CMAKE_CXX_FLAGS} ${cxx_base_flags} ${cxx_no_exception_flags}")
   set(cxx_default "${cxx_exception}")
   set(cxx_no_rtti "${cxx_default} ${cxx_no_rtti_flags}")
   set(cxx_use_own_tuple "${cxx_default} -DGTEST_USE_OWN_TR1_TUPLE=1")
@@ -129,16 +129,16 @@ function(cxx_library_with_type name type cxx_flags)
   # ARGN refers to additional arguments after 'cxx_flags'.
   add_library(${name} ${type} ${ARGN})
   set_target_properties(${name}
-    PROPERTIES
-    COMPILE_FLAGS "${cxx_flags}")
+      PROPERTIES
+      COMPILE_FLAGS "${cxx_flags}")
   if (BUILD_SHARED_LIBS OR type STREQUAL "SHARED")
     set_target_properties(${name}
-      PROPERTIES
-      COMPILE_DEFINITIONS "GTEST_CREATE_SHARED_LIBRARY=1")
-  endif()
+        PROPERTIES
+        COMPILE_DEFINITIONS "GTEST_CREATE_SHARED_LIBRARY=1")
+  endif ()
   if (CMAKE_USE_PTHREADS_INIT)
     target_link_libraries(${name} ${CMAKE_THREAD_LIBS_INIT})
-  endif()
+  endif ()
 endfunction()
 
 ########################################################################
@@ -161,19 +161,19 @@ function(cxx_executable_with_flags name cxx_flags libs)
   add_executable(${name} ${ARGN})
   if (cxx_flags)
     set_target_properties(${name}
-      PROPERTIES
-      COMPILE_FLAGS "${cxx_flags}")
-  endif()
+        PROPERTIES
+        COMPILE_FLAGS "${cxx_flags}")
+  endif ()
   if (BUILD_SHARED_LIBS)
     set_target_properties(${name}
-      PROPERTIES
-      COMPILE_DEFINITIONS "GTEST_LINKED_AS_SHARED_LIBRARY=1")
-  endif()
+        PROPERTIES
+        COMPILE_DEFINITIONS "GTEST_LINKED_AS_SHARED_LIBRARY=1")
+  endif ()
   # To support mixing linking in static and dynamic libraries, link each
   # library in with an extra call to target_link_libraries.
   foreach (lib "${libs}")
     target_link_libraries(${name} ${lib})
-  endforeach()
+  endforeach ()
 endfunction()
 
 # cxx_executable(name dir lib srcs...)
@@ -183,7 +183,7 @@ endfunction()
 # the source file list.
 function(cxx_executable name dir libs)
   cxx_executable_with_flags(
-    ${name} "${cxx_default}" "${libs}" "${dir}/${name}.cc" ${ARGN})
+      ${name} "${cxx_default}" "${libs}" "${dir}/${name}.cc" ${ARGN})
 endfunction()
 
 # Sets PYTHONINTERP_FOUND and PYTHON_EXECUTABLE.
@@ -205,7 +205,7 @@ endfunction()
 # test/name.cc is already implicitly included in the source file list.
 function(cxx_test name libs)
   cxx_test_with_flags("${name}" "${cxx_default}" "${libs}"
-    "test/${name}.cc" ${ARGN})
+      "test/${name}.cc" ${ARGN})
 endfunction()
 
 # py_test(name)
@@ -221,7 +221,7 @@ function(py_test name)
     # only at ctest runtime (by calling ctest -c <Configuration>), so
     # we have to escape $ to delay variable substitution here.
     add_test(${name}
-      ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test/${name}.py
-          --build_dir=${CMAKE_CURRENT_BINARY_DIR}/\${CTEST_CONFIGURATION_TYPE})
-  endif()
+        ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test/${name}.py
+        --build_dir=${CMAKE_CURRENT_BINARY_DIR}/\${CTEST_CONFIGURATION_TYPE})
+  endif ()
 endfunction()

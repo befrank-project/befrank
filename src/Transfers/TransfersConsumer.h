@@ -22,7 +22,7 @@
 #include "TransfersSubscription.h"
 #include "TypeHelpers.h"
 
-#include "crypto/crypto.h"
+#include "Crypto/crypto.h"
 #include "Logging/LoggerRef.h"
 
 #include "IObservableImpl.h"

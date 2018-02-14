@@ -22,7 +22,7 @@
 #include <vector>
 
 #include "Common/int-util.h"
-#include "crypto/hash.h"
+#include "Crypto/hash.h"
 #include "CryptoNoteConfig.h"
 #include "Difficulty.h"
 

@@ -22,7 +22,7 @@
 #include <Common/Util.h>
 #include "Common/CommandLine.h"
 #include "Common/StringTools.h"
-#include "crypto/crypto.h"
+#include "Crypto/crypto.h"
 #include "CryptoNoteConfig.h"
 
 namespace CryptoNote {

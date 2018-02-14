@@ -21,7 +21,7 @@
 #include "CryptoNoteProtocol/CryptoNoteProtocolDefinitions.h"
 #include "CryptoNoteCore/CryptoNoteBasic.h"
 #include "CryptoNoteCore/Difficulty.h"
-#include "crypto/hash.h"
+#include "Crypto/hash.h"
 
 #include "Serialization/SerializationOverloads.h"
 

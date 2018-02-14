@@ -18,7 +18,7 @@
 #pragma once
 
 #if defined(__cplusplus)
-#include "crypto/crypto.h"
+#include "Crypto/crypto.h"
 
 extern "C" {
 #endif

@@ -22,7 +22,7 @@
 #include <string>
 #include <unordered_map>
 
-#include "crypto/hash.h"
+#include "Crypto/hash.h"
 #include "CryptoNoteBasic.h"
 
 namespace CryptoNote {

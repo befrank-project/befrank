@@ -15,5 +15,5 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with Bytecoin.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "crypto/hash.c"
-#include "crypto/keccak.c"
+#include "Crypto/hash.c"
+#include "Crypto/keccak.c"

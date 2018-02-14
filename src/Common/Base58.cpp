@@ -17,11 +17,9 @@
 
 #include "Base58.h"
 
-#include <assert.h>
-#include <string>
 #include <vector>
 
-#include "crypto/hash.h"
+#include "Crypto/hash.h"
 #include "int-util.h"
 #include "Varint.h"
 

@@ -19,7 +19,7 @@
 
 #include <functional>
 
-#include "crypto/crypto.h"
+#include "Crypto/crypto.h"
 #include "CryptoNoteCore/CryptoNoteFormatUtils.h"
 
 #include <System/InterruptedException.h>

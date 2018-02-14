@@ -19,7 +19,7 @@
 
 #include "P2pProtocolTypes.h"
 
-#include "crypto/crypto.h"
+#include "Crypto/crypto.h"
 #include "CryptoNoteConfig.h"
 #include "CryptoNoteCore/CryptoNoteStatInfo.h"
 

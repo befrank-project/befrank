@@ -23,7 +23,7 @@
 #include "../Common/CommandLine.h"
 #include "../Common/Util.h"
 #include "../Common/StringTools.h"
-#include "../crypto/crypto.h"
+#include "../Crypto/crypto.h"
 #include "../CryptoNoteProtocol/CryptoNoteProtocolDefinitions.h"
 #include "../Logging/LoggerRef.h"
 #include "../Rpc/CoreRpcServerCommandsDefinitions.h"

@@ -16,7 +16,7 @@
 // along with Bytecoin.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "CryptoNoteBasic.h"
-#include "crypto/crypto.h"
+#include "Crypto/crypto.h"
 
 namespace CryptoNote {
 
