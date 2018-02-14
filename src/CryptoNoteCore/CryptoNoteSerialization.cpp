@@ -30,7 +30,7 @@
 #include "Serialization/BinaryOutputStreamSerializer.h"
 
 #include "Common/StringOutputStream.h"
-#include "crypto/crypto.h"
+#include "Crypto/crypto.h"
 
 #include "Account.h"
 #include "CryptoNoteConfig.h"

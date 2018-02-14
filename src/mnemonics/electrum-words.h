@@ -42,7 +42,7 @@
 #include <string>
 #include <cstdint>
 #include <map>
-#include "crypto/crypto.h"  // for declaration of Crypto::SecretKey
+#include "Crypto/crypto.h"  // for declaration of Crypto::SecretKey
 
 namespace Crypto {
 namespace ElectrumWords

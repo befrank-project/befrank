@@ -37,12 +37,12 @@
 #include "WalletLegacy/WalletLegacySerialization.h"
 #include "WalletLegacy/WalletLegacySerializer.h"
 #include "WalletLegacy/WalletUtils.h"
-#include "mnemonics/electrum-words.h"
+#include "Mnemonics/electrum-words.h"
 
 extern "C"
 {
-#include "crypto/keccak.h"
-#include "crypto/crypto-ops.h"
+#include "Crypto/keccak.h"
+#include "Crypto/crypto-ops.h"
 }
 
 using namespace Crypto;

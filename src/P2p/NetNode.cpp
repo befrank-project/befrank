@@ -41,7 +41,7 @@
 #include "Common/StdInputStream.h"
 #include "Common/StdOutputStream.h"
 #include "Common/Util.h"
-#include "crypto/crypto.h"
+#include "Crypto/crypto.h"
 
 #include "ConnectionContext.h"
 #include "LevinProtocol.h"

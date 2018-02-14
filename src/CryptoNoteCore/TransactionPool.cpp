@@ -27,7 +27,7 @@
 
 #include "Common/int-util.h"
 #include "Common/Util.h"
-#include "crypto/hash.h"
+#include "Crypto/hash.h"
 
 #include "Serialization/SerializationTools.h"
 #include "Serialization/BinarySerializationTools.h"

@@ -18,7 +18,7 @@
 // along with Bytecoin.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "WalletRpcServer.h"
-#include "crypto/hash.h"
+#include "Crypto/hash.h"
 #include "Common/CommandLine.h"
 #include "Common/StringTools.h"
 #include "CryptoNoteCore/CryptoNoteFormatUtils.h"
