@@ -89,7 +89,7 @@ set(CMAKE_SKIP_PACKAGE_ALL_DEPENDENCY OFF)
 set(CMAKE_SUPPRESS_REGENERATION ON)
 # enable_testing()
 # copy CTestCustom.cmake to build dir to disable long running tests in 'make test'
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CTestCustom.cmake ${CMAKE_CURRENT_BINARY_DIR})
+#configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CTestCustom.cmake ${CMAKE_CURRENT_BINARY_DIR})
 
 project(befrank-cli)
 
