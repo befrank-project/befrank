@@ -1,5 +1,5 @@
-name: monero
-version: 0.10.2-1
+name: befrank
+version: 0.1.1.alpha.2
 summary: "BeFrank: crypto-currency made for and by Belgium and anyone who feels part of our community https://getmonero.org"
 description: |
     Command line tools (daemon, wallet and miner) for the Belgian eFrank.
