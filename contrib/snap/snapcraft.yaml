@@ -1,0 +1,73 @@
+name: monero
+version: 0.10.2-1
+summary: "BeFrank: crypto-currency made for and by Belgium and anyone who feels part of our community https://getmonero.org"
+description: |
+    Command line tools (daemon, wallet and miner) for the Belgian eFrank.
+    A crypto-currency made for and by Belgium and anyone who feels part of our community.
+grade: devel
+confinement: strict
+
+apps:
+    befrankd:
+        daemon: forking
+        command: |
+          befrankd-wrapper --detach --data-dir ${SNAP_COMMON} --config-file ${SNAP_USER_DATA}/etc/befrankd.conf
+        plugs:
+            - network
+            - network-bind
+    befrank-wallet-rpc:
+        command: |
+          befrank-wallet-rpc --log-file ${SNAP_USER_DATA}
+        plugs:
+            - home
+            - network
+            - network-bind
+    befrank-wallet-cli:
+        command: |
+          befrank-wallet-cli --log-file ${SNAP_USER_DATA}
+        plugs:
+            - home
+            - network
+
+parts:
+    cmake-build:
+        plugin: cmake
+        configflags:
+            - -DBDB_STATIC=1
+            - -DUPNP_STATIC=1
+            - -DBoost_USE_STATIC_LIBS=1
+            - -DBoost_USE_STATIC_RUNTIME=1
+            - -DARCH=default
+        source: .
+        build-packages:
+            - gcc
+            - pkg-config
+            - libunbound-dev
+            - libevent-dev
+            - libboost-all-dev
+            - libunwind-dev
+            - libminiupnpc-dev
+            - libldns-dev
+            - libexpat1-dev
+            - bison
+            - doxygen
+            - graphviz
+        stage-packages:
+            - libminiupnpc10
+            - libunbound2
+            - libunwind8
+        prime:
+            - bin
+            - usr/lib/
+            - -usr/lib/gcc
+            - -usr/share
+
+    dist-files:
+        plugin: dump
+        source: .
+        organize:
+            contrib/snap/monerod.conf: etc/befrank.conf
+            contrib/snap/monerod-wrapper: bin/befrankd-wrapper
+        prime:
+            - etc
+            - bin
