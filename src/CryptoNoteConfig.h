@@ -126,7 +126,8 @@ const char* const SEED_NODES[] = {
   "seed3.befrank.site:18320",
   "seed4.befrank.site:18320",
   "seed5.befrank.site:18320",
-   "seed6.befrank.site:18320"
+  "seed6.befrank.site:18320",
+  "eat-sleep-mine.com:18320"
 };
 
 struct CheckpointData {
@@ -141,7 +142,9 @@ const std::initializer_list<CheckpointData> CHECKPOINTS = {
 	{	1000, "9930bf2d319a2aff24bb80e9db88f5fd6357e1c0448f34fa7aec20db97e75d13" },
 	{       2000, "a6c56b7e1e4fbc4131bf182c6712ebf3caea29386d1306bb1750c6b3a61f282e" }.
 	{	5000, "4b9bb365ee89cc5cb9ca7fdd9f2ed70ffcdf3d7998ae6f49dcd007e4257a1685" },
-	{.      8800, "0e61f5d84e0d1dbe09b58fa2e9e5df0fb415ab0c979965cc3b293f9992943a2e" }
+	{       8800, "0e61f5d84e0d1dbe09b58fa2e9e5df0fb415ab0c979965cc3b293f9992943a2e" },
+	{      30000, "a84942d3382d70f311228c4dbaa58b46096497c0fdbe2694c6da947caa270c41" },
+	{      31530, "c977a0e9b1f2d58abcbe296eef68ba22f73837ba9785dbaaa0a42cbdb2ef9bca" }
 };
 
 } // CryptoNote
