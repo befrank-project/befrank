@@ -121,13 +121,16 @@ const size_t   P2P_DEFAULT_HANDSHAKE_INVOKE_TIMEOUT          = 5000;          //
 const char     P2P_STAT_TRUSTED_PUB_KEY[]                    = "04522aabf22d2c98fabdacdab9803e0def7ecc0908526edc029c6dd62252f431f7d1ea5710d5b9e370a12830eb8c45cc7726eaa9b1c897cb98aef801113c4075b1";
 
 const char* const SEED_NODES[] = { 
+	/*
   "seed.befrank.site:18320",
   "seed2.befrank.site:18320",
   "seed3.befrank.site:18320",
   "seed4.befrank.site:18320",
   "seed5.befrank.site:18320",
   "seed6.befrank.site:18320",
-  "eat-sleep-mine.com:18320"
+  */
+  "us.eat-sleep-mine.com:18320",
+  "eu.eat-sleep-mine.com:18320"
 };
 
 struct CheckpointData {
