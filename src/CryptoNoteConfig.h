@@ -23,8 +23,8 @@ namespace CryptoNote {
 namespace parameters {
 
 const uint64_t CRYPTONOTE_MAX_BLOCK_NUMBER                   = 500000000;
-const size_t   CRYPTONOTE_MAX_BLOCK_BLOB_SIZE                = 500000000;
-const size_t   CRYPTONOTE_MAX_TX_SIZE                        = 1000000000;
+const size_t   CRYPTONOTE_MAX_BLOCK_BLOB_SIZE                = 5000000000;
+const size_t   CRYPTONOTE_MAX_TX_SIZE                        = 10000000000;
 const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX       = 86; // addresses start with "F"
 const size_t   CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW          = 10;
 const uint64_t CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT            = 60 * 60 * 2;
@@ -74,9 +74,9 @@ const size_t   FUSION_TX_MIN_IN_OUT_COUNT_RATIO              = 4;
 const uint32_t UPGRADE_HEIGHT_V2                             = 1;
 const uint32_t UPGRADE_HEIGHT_V3                             = 2;
 const unsigned UPGRADE_VOTING_THRESHOLD = 90;               // percent
-const uint32_t   UPGRADE_VOTING_WINDOW                       = EXPECTED_NUMBER_OF_BLOCKS_PER_DAY;  // blocks
-const uint32_t   UPGRADE_WINDOW                              = EXPECTED_NUMBER_OF_BLOCKS_PER_DAY;  // blocks
-static_assert(0 < UPGRADE_VOTING_THRESHOLD && UPGRADE_VOTING_THRESHOLD <= 100, "Bad UPGRADE_VOTING_THRESHOLD");
+const uint32_t UPGRADE_VOTING_WINDOW                       = EXPECTED_NUMBER_OF_BLOCKS_PER_DAY;  // blocks
+const uint32_t UPGRADE_WINDOW                              = EXPECTED_NUMBER_OF_BLOCKS_PER_DAY;  // blocks
+static_assert(UPGRADE_VOTING_THRESHOLD && UPGRADE_VOTING_THRESHOLD <= 100, "Bad UPGRADE_VOTING_THRESHOLD");
 static_assert(UPGRADE_VOTING_WINDOW > 1, "Bad UPGRADE_VOTING_WINDOW");
 
 const char     CRYPTONOTE_BLOCKS_FILENAME[]                  = "blocks.dat";
@@ -99,8 +99,8 @@ const uint8_t  BLOCK_MINOR_VERSION_0                         =  0;
 const uint8_t  BLOCK_MINOR_VERSION_1                         =  1;
 
 const size_t   BLOCKS_IDS_SYNCHRONIZING_DEFAULT_COUNT        =  10000;  //by default, blocks ids count in synchronizing
-const size_t   BLOCKS_SYNCHRONIZING_DEFAULT_COUNT            =  200;    //by default, blocks count in blocks downloading
-const size_t   COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT         =  1000;
+const size_t   BLOCKS_SYNCHRONIZING_DEFAULT_COUNT            =  1000;    //by default, blocks count in blocks downloading
+const size_t   COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT         =  2000;
 
 const int      P2P_DEFAULT_PORT                              =  18320;
 const int      RPC_DEFAULT_PORT                              =  18322;
@@ -109,7 +109,7 @@ const size_t   P2P_LOCAL_WHITE_PEERLIST_LIMIT                =  1000;
 const size_t   P2P_LOCAL_GRAY_PEERLIST_LIMIT                 =  5000;
 
 const size_t   P2P_CONNECTION_MAX_WRITE_BUFFER_SIZE          = 16 * 1024 * 1024; // 16 MB
-const uint32_t P2P_DEFAULT_CONNECTIONS_COUNT                 = 8;
+const uint32_t P2P_DEFAULT_CONNECTIONS_COUNT                 = 12;
 const size_t   P2P_DEFAULT_WHITELIST_CONNECTIONS_PERCENT     = 70;
 const uint32_t P2P_DEFAULT_HANDSHAKE_INTERVAL                = 60;            // seconds
 const uint32_t P2P_DEFAULT_PACKET_MAX_SIZE                   = 50000000;      // 50000000 bytes maximum packet size
@@ -120,15 +120,15 @@ const uint64_t P2P_DEFAULT_INVOKE_TIMEOUT                    = 60 * 2 * 1000; //
 const size_t   P2P_DEFAULT_HANDSHAKE_INVOKE_TIMEOUT          = 5000;          // 5 seconds
 const char     P2P_STAT_TRUSTED_PUB_KEY[]                    = "04522aabf22d2c98fabdacdab9803e0def7ecc0908526edc029c6dd62252f431f7d1ea5710d5b9e370a12830eb8c45cc7726eaa9b1c897cb98aef801113c4075b1";
 
-const char* const SEED_NODES[] = { 
-	/*
+const char* const SEED_NODES[] = {
   "seed.befrank.site:18320",
+  "backup.befrank.site:18320",
   "seed2.befrank.site:18320",
   "seed3.befrank.site:18320",
   "seed4.befrank.site:18320",
   "seed5.befrank.site:18320",
   "seed6.befrank.site:18320",
-  */
+  "master.befrank.site:18320",
   "us.eat-sleep-mine.com:18320",
   "eu.eat-sleep-mine.com:18320"
 };
@@ -138,7 +138,7 @@ struct CheckpointData {
   const char* blockId;
 };
 
-const std::initializer_list<CheckpointData> CHECKPOINTS = { 
+const std::initializer_list<CheckpointData> CHECKPOINTS = {
 	{	       1, "2a9c2d3e4e8f00ed29b8c8ee2c34212bc932547d079ce39924a31ed22726b91c" },
 	{	       2, "4e216dd8f98369bad6196c3219ffaf0659a6603d7679f67654dcf499c9368f0f" },
 	{	       3, "e1b3f21b1382436b4f5dbb042a314f686e435df6152f0e08f073affcf166b895" },
@@ -159,7 +159,12 @@ const std::initializer_list<CheckpointData> CHECKPOINTS = {
 	{      27500, "a46967209e8f8cb316687543648747bf929fe22e3ffe4b094b1c6196f0b42f17" },
 	{      30000, "a84942d3382d70f311228c4dbaa58b46096497c0fdbe2694c6da947caa270c41" },
 	{      31000, "482b6af4a391f6063203ee07c4be538d2b403f6d063e0943b680f6b0bab0806c" },
-	{      31489, "f6adb5f2a4322405c3703463a1428859e409ccec28e9011c2eb374b07cdb7a69" }
+	{      31489, "f6adb5f2a4322405c3703463a1428859e409ccec28e9011c2eb374b07cdb7a69" },
+	{	   48744, "4347c3477dbc3bcfba13e98dce8c43ef778011fbf7147e88f5b62dd7b5273e47" },
+    {      50000, "ae6e254c5cac40e58a0bff173dda1e3501f1050e980977ef133127b733f5827f" },
+    {      55000, "71341a68cef034542a9beac6524a148c84a7a61b1a5d19be95ad3e6ab0de3397" },
+    {      59000, "39d923d5cfce2a8fa689cebd9a343b1a88e42f668b1f64c9dfd92caba581adf6" },
+    {      60469, "643c36d2f46d602696e2083dff58f1d01b06ae11cec4f2616792b68ce265a9b5" }
 };
 
 } // CryptoNote
