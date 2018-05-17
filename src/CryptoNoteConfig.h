@@ -108,7 +108,7 @@ const int      RPC_DEFAULT_PORT                              =  18322;
 const size_t   P2P_LOCAL_WHITE_PEERLIST_LIMIT                =  1000;
 const size_t   P2P_LOCAL_GRAY_PEERLIST_LIMIT                 =  5000;
 
-const size_t   P2P_CONNECTION_MAX_WRITE_BUFFER_SIZE          = 16 * 1024 * 1024; // 16 MB
+const size_t   P2P_CONNECTION_MAX_WRITE_BUFFER_SIZE          = 32 * 1024 * 1024; // 32 MB
 const uint32_t P2P_DEFAULT_CONNECTIONS_COUNT                 = 12;
 const size_t   P2P_DEFAULT_WHITELIST_CONNECTIONS_PERCENT     = 70;
 const uint32_t P2P_DEFAULT_HANDSHAKE_INTERVAL                = 60;            // seconds
@@ -121,17 +121,17 @@ const size_t   P2P_DEFAULT_HANDSHAKE_INVOKE_TIMEOUT          = 5000;          //
 const char     P2P_STAT_TRUSTED_PUB_KEY[]                    = "04522aabf22d2c98fabdacdab9803e0def7ecc0908526edc029c6dd62252f431f7d1ea5710d5b9e370a12830eb8c45cc7726eaa9b1c897cb98aef801113c4075b1";
 
 const char* const SEED_NODES[] = {
-  "seed.befrank.site:18320",
-  "backup.befrank.site:18320",
-  "seed2.befrank.site:18320",
-  "seed3.befrank.site:18320",
-  "seed4.befrank.site:18320",
-  "seed5.befrank.site:18320",
-  "seed6.befrank.site:18320",
-  "master.befrank.site:18320",
-  "us.eat-sleep-mine.com:18320",
-  "eu.eat-sleep-mine.com:18320"
-};
+            "seed.befrank.site:18320",
+            "backup.befrank.site:18320",
+            "seed2.befrank.site:18320",
+            "seed3.befrank.site:18320",
+            "seed4.befrank.site:18320",
+            "seed5.befrank.site:18320",
+            "seed6.befrank.site:18320",
+            "master.befrank.site:18320",
+            "us.eat-sleep-mine.com:18320",
+            "eu.eat-sleep-mine.com:18320"
+    };
 
 struct CheckpointData {
   uint32_t height;
@@ -164,7 +164,8 @@ const std::initializer_list<CheckpointData> CHECKPOINTS = {
     {      50000, "ae6e254c5cac40e58a0bff173dda1e3501f1050e980977ef133127b733f5827f" },
     {      55000, "71341a68cef034542a9beac6524a148c84a7a61b1a5d19be95ad3e6ab0de3397" },
     {      59000, "39d923d5cfce2a8fa689cebd9a343b1a88e42f668b1f64c9dfd92caba581adf6" },
-    {      60469, "643c36d2f46d602696e2083dff58f1d01b06ae11cec4f2616792b68ce265a9b5" }
+    {      60469, "643c36d2f46d602696e2083dff58f1d01b06ae11cec4f2616792b68ce265a9b5" },
+    {      64452, "84a4581bf2e2a08f08667fea1a672ea8e9f40cf8cfdfbae70a790a7db72f16b9" }
 };
 
 } // CryptoNote
