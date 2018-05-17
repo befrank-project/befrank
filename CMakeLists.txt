@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.6)
 if (WIN32)
  option(CMAKE_USE_WIN32_THREADS_INIT "using WIN32 threads" ON)
 endif()
-set(VERSION "1.0.1-alpha.2")
+set(VERSION "1.0.1-alpha.5")
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
