@@ -265,35 +265,45 @@ struct COMMAND_RPC_START_MINING {
 };
 //-----------------------------------------------
 struct COMMAND_RPC_GET_INFO {
-  typedef EMPTY_STRUCT request;
+    typedef EMPTY_STRUCT request;
 
-  struct response {
-    std::string status;
-    uint64_t height;
-    uint64_t difficulty;
-    uint64_t tx_count;
-    uint64_t tx_pool_size;
-    uint64_t alt_blocks_count;
-    uint64_t outgoing_connections_count;
-    uint64_t incoming_connections_count;
-    uint64_t white_peerlist_size;
-    uint64_t grey_peerlist_size;
-    uint32_t last_known_block_index;
+    struct response {
+        std::string status;
+        std::string version;
+        uint64_t height;
+        std::string top_block_hash;
+        uint64_t difficulty;
+        uint64_t tx_count;
+        uint64_t tx_pool_size;
+        uint64_t alt_blocks_count;
+        uint64_t outgoing_connections_count;
+        uint64_t incoming_connections_count;
+        uint64_t rpc_connections_count;
+        uint64_t white_peerlist_size;
+        uint64_t grey_peerlist_size;
+        uint32_t last_known_block_index;
+        uint64_t start_time;
+        std::string fee_address;
 
-    void serialize(ISerializer &s) {
-      KV_MEMBER(status)
-      KV_MEMBER(height)
-      KV_MEMBER(difficulty)
-      KV_MEMBER(tx_count)
-      KV_MEMBER(tx_pool_size)
-      KV_MEMBER(alt_blocks_count)
-      KV_MEMBER(outgoing_connections_count)
-      KV_MEMBER(incoming_connections_count)
-      KV_MEMBER(white_peerlist_size)
-      KV_MEMBER(grey_peerlist_size)
-      KV_MEMBER(last_known_block_index)
-    }
-  };
+        void serialize(ISerializer &s) {
+            KV_MEMBER(status)
+            KV_MEMBER(version)
+            KV_MEMBER(height)
+            KV_MEMBER(top_block_hash)
+            KV_MEMBER(difficulty)
+            KV_MEMBER(tx_count)
+            KV_MEMBER(tx_pool_size)
+            KV_MEMBER(alt_blocks_count)
+            KV_MEMBER(outgoing_connections_count)
+            KV_MEMBER(incoming_connections_count)
+            KV_MEMBER(rpc_connections_count)
+            KV_MEMBER(white_peerlist_size)
+            KV_MEMBER(grey_peerlist_size)
+            KV_MEMBER(last_known_block_index)
+            KV_MEMBER(start_time)
+            KV_MEMBER(fee_address)
+        }
+    };
 };
 
 //-----------------------------------------------
@@ -725,6 +735,59 @@ struct COMMAND_RPC_QUERY_BLOCKS_LITE {
       KV_MEMBER(items)
     }
   };
+};
+
+//-----------------------------------------------
+struct K_COMMAND_RPC_CHECK_TX_WITH_PRIVATE_VIEW_KEY {
+    struct request {
+        std::string txid;
+        std::string view_key;
+        std::string address;
+
+        void serialize(ISerializer &s) {
+            KV_MEMBER(txid)
+            KV_MEMBER(view_key)
+            KV_MEMBER(address)
+        }
+    };
+
+    struct response {
+        uint64_t amount;
+        std::vector<TransactionOutput> outputs;
+        std::string status;
+
+        void serialize(ISerializer &s) {
+            KV_MEMBER(amount)
+            KV_MEMBER(outputs)
+            KV_MEMBER(status)
+        }
+    };
+};
+
+struct COMMAND_RPC_VALIDATE_ADDRESS {
+    struct request {
+        std::string address;
+
+        void serialize(ISerializer &s) {
+            KV_MEMBER(address)
+        }
+    };
+
+    struct response {
+        bool isvalid;
+        std::string address;
+        std::string spendPublicKey;
+        std::string viewPublicKey;
+        std::string status;
+
+        void serialize(ISerializer &s) {
+            KV_MEMBER(isvalid)
+            KV_MEMBER(address)
+            KV_MEMBER(spendPublicKey)
+            KV_MEMBER(viewPublicKey)
+            KV_MEMBER(status)
+        }
+    };
 };
 
 }
