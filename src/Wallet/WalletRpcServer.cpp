@@ -346,14 +346,14 @@ bool wallet_rpc_server::on_get_address(const wallet_rpc::COMMAND_RPC_GET_ADDRESS
 bool wallet_rpc_server::on_query_key(const wallet_rpc::COMMAND_RPC_QUERY_KEY::request& req,
 	wallet_rpc::COMMAND_RPC_QUERY_KEY::response& res)
 {
-	if (req.key_type.compare("mnemonic")) {
-		if (!m_wallet.getSeed(res.key))
-			throw JsonRpc::JsonRpcError(WALLET_RPC_ERROR_CODE_UNKNOWN_ERROR,
-										std::string("The wallet is non-deterministic. Cannot display seed."));
-	} else if (req.key_type.compare("view-key")) {
+	if (req.key_type.compare("view-key") == 0) {
 		AccountKeys keys;
 		m_wallet.getAccountKeys(keys);
 		res.key =  Common::podToHex(keys.viewSecretKey);
+	} else	if (req.key_type.compare("mnemonic") == 0) {
+		if (!m_wallet.getSeed(res.key))
+			throw JsonRpc::JsonRpcError(WALLET_RPC_ERROR_CODE_UNKNOWN_ERROR,
+										std::string("The wallet is non-deterministic. Cannot display seed."));
 	} else {
 		throw JsonRpc::JsonRpcError(WALLET_RPC_ERROR_CODE_UNKNOWN_ERROR,
 									std::string("Unsupported key_type ") + req.key_type);
