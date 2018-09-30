@@ -1,3 +1,4 @@
+# Copyright (c) 2018 BeFrank Team
 # Copyright (c) 2014-2017, The Monero Project
 # 
 # All rights reserved.
