@@ -125,6 +125,7 @@ void wallet_rpc_server::processRequest(const CryptoNote::HttpRequest& request, C
 		static const std::unordered_map<std::string, JsonMemberMethod> s_methods =
 		{
 			{ "getbalance"	 , makeMemberMethod(&wallet_rpc_server::on_getbalance)		},
+			{ "get_balance"	 , makeMemberMethod(&wallet_rpc_server::on_getbalance)		},
 			{ "transfer"	 , makeMemberMethod(&wallet_rpc_server::on_transfer)		},
 			{ "store"		 , makeMemberMethod(&wallet_rpc_server::on_store)			},
 			{ "get_payments" , makeMemberMethod(&wallet_rpc_server::on_get_payments)	},
@@ -155,13 +156,21 @@ void wallet_rpc_server::processRequest(const CryptoNote::HttpRequest& request, C
 
 //------------------------------------------------------------------------------------------------------------------------------
 
-bool wallet_rpc_server::on_getbalance(const wallet_rpc::COMMAND_RPC_GET_BALANCE::request& req, 
-	wallet_rpc::COMMAND_RPC_GET_BALANCE::response& res)
+bool wallet_rpc_server::on_getbalance(const wallet_rpc::COMMAND_RPC_GETBALANCE::request& req,
+	wallet_rpc::COMMAND_RPC_GETBALANCE::response& res)
 {
 	res.locked_amount	  = m_wallet.pendingBalance();
 	res.available_balance = m_wallet.actualBalance();
 	return true;
 }
+
+	bool wallet_rpc_server::on_get_balance(const wallet_rpc::COMMAND_RPC_GET_BALANCE::request& req,
+										  wallet_rpc::COMMAND_RPC_GET_BALANCE::response& res)
+	{
+		res.locked_amount	  = m_wallet.pendingBalance();
+		res.available_balance = m_wallet.actualBalance();
+		return true;
+	}
 
 //------------------------------------------------------------------------------------------------------------------------------
 

@@ -1,4 +1,8 @@
-cmake_minimum_required(VERSION 2.8.6)
+cmake_minimum_required(VERSION 3.0)
+project(befrank)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_C_STANDARD 11)
+
 if (WIN32)
  option(CMAKE_USE_WIN32_THREADS_INIT "using WIN32 threads" ON)
 endif()
@@ -79,6 +83,14 @@ endif()
 
 message(STATUS "BOOST_IGNORE_SYSTEM_PATHS defaults to ${BOOST_IGNORE_SYSTEM_PATHS_DEFAULT}")
 option(BOOST_IGNORE_SYSTEM_PATHS "Ignore boost system paths for local boost installation" ${BOOST_IGNORE_SYSTEM_PATHS_DEFAULT})
+if(WIN32)
+  include_directories(SYSTEM ../boost)
+  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    link_directories(SYSTEM ../boost/stage/lib) # must be before add_executable, add_library
+  else()
+    link_directories(SYSTEM ../boost/stage32/lib) # must be before add_executable, add_library
+  endif()
+endif()
 
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)

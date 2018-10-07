@@ -31,6 +31,23 @@ using CryptoNote::ISerializer;
 #define WALLET_RPC_STATUS_OK      "OK"
 #define WALLET_RPC_STATUS_BUSY    "BUSY"
 
+	/* Command: getbalance */
+	struct COMMAND_RPC_GETBALANCE
+	{
+		typedef CryptoNote::EMPTY_STRUCT request;
+		struct response
+		{
+			uint64_t locked_amount;
+			uint64_t available_balance;
+
+			void serialize(ISerializer& s)
+			{
+				KV_MEMBER(locked_amount)
+				KV_MEMBER(available_balance)
+			}
+		};
+	};
+
 	/* Command: get_balance */
 	struct COMMAND_RPC_GET_BALANCE
 	{
