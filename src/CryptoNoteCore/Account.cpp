@@ -55,7 +55,7 @@ Crypto::SecretKey AccountBase::generate_key(const Crypto::SecretKey& recovery_ke
   Crypto::SecretKey second;
   keccak((uint8_t *)&first, sizeof(Crypto::SecretKey), (uint8_t *)&second, sizeof(Crypto::SecretKey));
 
-  generate_m_keys(m_keys.address.viewPublicKey, m_keys.viewSecretKey, second, two_random ? false : true);
+  generate_m_keys(m_keys.address.viewPublicKey, m_keys.viewSecretKey, second, !two_random);
 
   struct tm timestamp;
   timestamp.tm_year = 2016 - 1900;  // year 2016

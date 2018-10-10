@@ -204,7 +204,7 @@ namespace CryptoNote {
 			[&outAmounts](uint64_t a_chunk) { outAmounts.push_back(a_chunk); },
 			[&outAmounts](uint64_t a_dust) { outAmounts.push_back(a_dust); });
 
-		if (!(1 <= maxOuts)) { logger(ERROR, BRIGHT_RED) << "max_out must be non-zero"; return false; }
+		if ((1 >= maxOuts)) { logger(ERROR, BRIGHT_RED) << "max_out must be non-zero"; return false; }
 		while (maxOuts < outAmounts.size()) {
 			outAmounts[outAmounts.size() - 2] += outAmounts.back();
 			outAmounts.resize(outAmounts.size() - 1);
@@ -243,7 +243,7 @@ namespace CryptoNote {
 			tx.outputs.push_back(out);
 		}
 
-		if (!(summaryAmounts == blockReward)) {
+		if ((summaryAmounts != blockReward)) {
 			logger(ERROR, BRIGHT_RED) << "Failed to construct miner tx, summaryAmounts = " << summaryAmounts << " not equal blockReward = " << blockReward;
 			return false;
 		}

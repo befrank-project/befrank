@@ -19,7 +19,6 @@
 
 #include <vector>
 #include <boost/variant.hpp>
-#include "android.h"
 #include "CryptoTypes.h"
 
 namespace CryptoNote {

@@ -18,7 +18,6 @@
 #include "RpcServerConfig.h"
 #include "Common/CommandLine.h"
 #include "CryptoNoteConfig.h"
-#include "android.h"
 
 namespace CryptoNote {
 
